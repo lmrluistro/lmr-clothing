@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101010">
+<title>LMR Clothing — Built by Positivity</title>
+<style>
+:root{--bg:#0b0b0c;--panel:#141416;--card:#18181b;--text:#f6f4f0;--muted:#a6a3a0;--line:#2b2a2c;--red:#e6002d;--gold:#c7a879}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,Helvetica,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.topbar{padding:10px 5%;text-align:center;background:var(--red);font-size:11px;letter-spacing:.18em;font-weight:800;text-transform:uppercase}.nav{height:84px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:18px}.brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none}.brand img{width:94px;max-height:56px;object-fit:contain;background:#fff}.brand span{font-weight:900;letter-spacing:.16em;font-size:12px}.navlinks{display:flex;align-items:center;gap:26px}.navlinks a,.navlinks button{background:none;border:0;color:var(--text);text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:.12em}.navlinks a:hover,.navlinks button:hover{color:var(--gold)}.hero{min-height:500px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;padding:60px 7%;gap:38px;background:radial-gradient(ellipse at 85% 30%,#252123 0,transparent 48%),linear-gradient(120deg,#090909,#171416)}.eyebrow{color:var(--gold);font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:800}.hero h1{font-size:clamp(48px,7vw,90px);line-height:.9;letter-spacing:-.06em;margin:20px 0}.hero h1 span{color:var(--red)}.hero p{color:#c3c0bc;max-width:460px;line-height:1.8;font-size:15px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--red);background:var(--red);color:#fff;padding:14px 22px;text-decoration:none;text-transform:uppercase;font-weight:800;letter-spacing:.12em;font-size:11px;transition:.2s}.btn:hover{background:#b90025;border-color:#b90025}.btn.secondary{background:transparent;border-color:#555}.hero-visual{position:relative;display:grid;place-items:center;min-height:320px}.hero-visual img{width:min(100%,520px);max-height:380px;object-fit:contain;filter:drop-shadow(0 25px 35px #0009)}.hero-stamp{position:absolute;bottom:0;right:0;border:1px solid #494144;padding:15px 18px;color:var(--gold);font-size:10px;letter-spacing:.2em;text-transform:uppercase;background:#0c0b0bd9}.section{padding:72px 5%}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:28px}.section h2{font-size:clamp(28px,4vw,44px);letter-spacing:-.04em;margin:10px 0}.section-head p{color:var(--muted);font-size:13px;max-width:400px;line-height:1.6}.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.product{background:var(--card);border:1px solid var(--line);overflow:hidden;position:relative}.product-image{aspect-ratio:4/4.1;background:#101012;display:grid;place-items:center;overflow:hidden}.product-image img{width:100%;height:100%;object-fit:cover;transition:transform .45s}.product:hover .product-image img{transform:scale(1.035)}.badge{position:absolute;top:14px;left:14px;background:var(--red);padding:7px 9px;font-size:9px;letter-spacing:.13em;font-weight:900;text-transform:uppercase}.product-info{padding:18px}.product-info h3{font-size:15px;letter-spacing:.06em;margin:0 0 8px;text-transform:uppercase}.product-info p{font-size:12px;color:var(--muted);line-height:1.5;min-height:34px}.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px}.price{font-weight:800;font-size:16px}.small-btn{background:transparent;border:1px solid #555;color:#fff;padding:10px 12px;font-size:10px;letter-spacing:.1em;text-transform:uppercase}.small-btn:hover{border-color:var(--red);color:#fff;background:var(--red)}.story{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#111113;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.story-logo{background:#fff;display:grid;place-items:center;padding:36px;min-height:200px}.story-logo img{width:100%;max-width:560px;max-height:220px;object-fit:contain}.story-copy p{color:#b9b6b2;line-height:1.9;font-size:14px;max-width:580px}.story-copy blockquote{border-left:3px solid var(--red);padding-left:18px;margin:24px 0;color:var(--gold);font-weight:800;letter-spacing:.08em}.banner{margin:0 5% 70px;padding:35px 40px;background:linear-gradient(110deg,#1b1719,#101010);border:1px solid #33282b;display:flex;align-items:center;justify-content:space-between;gap:25px}.banner h2{margin:8px 0;font-size:clamp(23px,3vw,36px)}.banner p{color:var(--muted);font-size:13px;line-height:1.7}.footer{border-top:1px solid var(--line);padding:30px 5%;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--muted);font-size:11px;letter-spacing:.08em}.footer strong{color:#fff}.overlay{position:fixed;inset:0;background:#000b;z-index:10;display:none;align-items:center;justify-content:center;padding:18px}.overlay.show{display:flex}.modal{width:min(720px,100%);max-height:92vh;overflow:auto;background:#141416;border:1px solid #383438;padding:25px}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:20px}.modal-head h2{margin:0;font-size:20px}.x{background:none;border:0;color:#fff;font-size:25px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:var(--muted)}.field input,.field textarea,.field select{width:100%;background:#0c0c0d;border:1px solid #39383a;color:#fff;padding:12px;min-width:0}.field textarea{min-height:76px;resize:vertical}.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.notice{color:var(--muted);font-size:12px;line-height:1.7}.admin-list{display:grid;gap:10px;margin-top:18px}.admin-item{display:flex;align-items:center;gap:12px;background:#0d0d0e;border:1px solid var(--line);padding:10px}.admin-item img{width:55px;height:55px;object-fit:cover}.admin-item .grow{flex:1}.admin-item small{display:block;color:var(--muted);margin-top:5px}.cart-list{display:grid;gap:12px}.cart-item{display:grid;grid-template-columns:70px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.cart-item img{width:70px;height:70px;object-fit:cover}.cart-item small{color:var(--muted)}.qty{display:flex;align-items:center;gap:10px;margin-top:7px}.qty button{background:#222;border:1px solid #444;color:#fff;width:25px;height:25px}.cart-total{display:flex;justify-content:space-between;padding:18px 0;font-size:18px;font-weight:800}.empty{padding:25px;color:var(--muted);text-align:center;border:1px dashed #444}.hidden{display:none!important}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;color:#111;padding:12px 18px;font-size:12px;z-index:30;box-shadow:0 6px 25px #0008}
+@media(max-width:800px){.nav{height:auto;padding:16px 5%;align-items:flex-start}.navlinks{gap:12px;flex-wrap:wrap;justify-content:flex-end}.navlinks a,.navlinks button{font-size:10px}.brand img{width:65px}.brand span{display:none}.hero{grid-template-columns:1fr;padding:55px 6%;text-align:center}.hero p{margin:0 auto 24px}.hero-visual{min-height:230px}.hero-visual img{max-height:280px}.hero-stamp{right:5%;bottom:-4px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.section{padding:50px 5%}.section-head{align-items:flex-start;flex-direction:column;gap:8px}.story{grid-template-columns:1fr}.story-logo{min-height:150px;padding:25px}.story-copy{padding:0 2px}.banner{margin:0 5% 45px;padding:25px;align-items:flex-start;flex-direction:column}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.product-info{padding:13px}.product-info h3{font-size:12px}.price-row{align-items:flex-start;flex-direction:column}.small-btn{width:100%}}
+@media(max-width:420px){.products{grid-template-columns:1fr}.product-image{aspect-ratio:1.15}.navlinks{gap:9px}.navlinks a{display:none}.hero h1{font-size:54px}}
+
+/* Responsive layout + clickable product photo treatment */
+*{box-sizing:border-box}html,body{max-width:100%;overflow-x:hidden}img{max-width:100%}
+.product-image{cursor:zoom-in;position:relative;aspect-ratio:4/4.1;background:#101012}
+.product-image img{object-fit:contain;padding:6px}
+.product-image:after{content:"VIEW FULL PHOTO ↗";position:absolute;right:10px;bottom:10px;background:#0b0b0ddd;color:#fff;padding:8px 10px;font-size:9px;letter-spacing:.12em;border:1px solid #ffffff44;pointer-events:none}
+.product-image:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.lightbox-image{width:min(94vw,1400px);height:min(86vh,1000px);object-fit:contain;display:block;margin:auto}
+.lightbox-close{position:absolute;top:14px;right:18px;border:1px solid #ffffff66;background:#111;color:#fff;width:46px;height:46px;font-size:28px;z-index:2}
+.lightbox-caption{position:absolute;bottom:14px;left:12px;right:12px;text-align:center;color:#ddd;font-size:12px;letter-spacing:.1em}
+@media(max-width:800px){
+ .nav{height:auto;min-height:72px;padding:12px 4%;align-items:center}
+ .navlinks{gap:10px;flex-wrap:wrap;justify-content:flex-end}
+ .navlinks a,.navlinks button{font-size:10px;padding:8px 0}
+ .brand img{width:70px;max-height:46px}.brand span{display:none}
+ .hero{grid-template-columns:minmax(0,1fr);padding:48px 5%;text-align:center;gap:20px}
+ .hero p{margin:0 auto 24px}.hero-visual{min-height:220px}.hero-visual img{max-height:310px;width:100%}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ .section{padding:48px 4%}.section-head{align-items:flex-start;flex-direction:column;gap:8px}
+ .story{grid-template-columns:minmax(0,1fr);gap:24px}.story-logo{min-height:130px;padding:22px}
+ .banner{margin:0 4% 42px;padding:24px;align-items:flex-start;flex-direction:column}
+ .formgrid{grid-template-columns:minmax(0,1fr)}.field.full{grid-column:auto}
+ .product-info{padding:13px}.product-info h3{font-size:12px}.price-row{align-items:flex-start;flex-direction:column}.small-btn{width:100%}
+ .modal{padding:18px}.modal-head h2{font-size:17px}
+}
+@media(max-width:480px){
+ .topbar{font-size:9px;padding:9px 12px;letter-spacing:.12em}.nav{padding:12px 4%;gap:8px}
+ .navlinks{gap:10px}.navlinks button{font-size:9px;letter-spacing:.06em}.navlinks a{display:none}
+ .hero{padding:40px 5%}.hero h1{font-size:clamp(44px,13vw,58px)}
+ .hero-visual{min-height:180px}.hero-visual img{max-height:240px}
+ .products{grid-template-columns:minmax(0,1fr)}.product-image{aspect-ratio:1/1}
+ .section{padding:42px 5%}.banner{margin:0 5% 38px;padding:20px}
+ .cart-item{grid-template-columns:56px minmax(0,1fr);gap:10px}.cart-item>strong{grid-column:2}.cart-item img{width:56px;height:56px}
+}
+
+
+
+/* Latest TROPA model campaign banner */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#080808 url('assets/tropa-models-banner.png') center center/cover no-repeat;min-height:clamp(430px,42vw,690px);grid-template-columns:minmax(0,1fr);padding:0 7%}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.70) 28%,rgba(0,0,0,.25) 52%,rgba(0,0,0,.05) 100%);z-index:-1}
+.hero>div:first-child{max-width:560px;position:relative;z-index:1}
+.hero .eyebrow{color:#f0e600}
+.hero h1{font-size:clamp(48px,6vw,86px);line-height:.94}
+.hero p{color:#e1dfdc}
+.hero .btn{background:#f0e600;border-color:#f0e600;color:#090909}
+.hero .btn:hover{background:#d8d000;border-color:#d8d000}
+.hero-visual{display:none}
+@media(max-width:800px){
+ .hero{min-height:540px;padding:38px 5%;background-position:58% center;align-items:end}
+ .hero:before{background:linear-gradient(0deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.78) 42%,rgba(0,0,0,.12) 100%)}
+ .hero>div:first-child{max-width:100%;align-self:end;padding-bottom:12px;text-align:left}
+ .hero h1{font-size:clamp(42px,10vw,66px)}
+ .hero p{font-size:13px}
+}
+@media(max-width:480px){
+ .hero{min-height:500px;padding:28px 5%;background-position:58% center}
+ .hero h1{font-size:clamp(38px,11vw,52px)}
+ .hero .btn{padding:13px 16px}
+}
+
+</style>
+</head>
+<body>
+<div class="topbar">TROPA — FIRST DROP · BUILT BY FRIENDSHIP · WALANG IWANAN</div>
+<header class="nav">
+  <a class="brand" href="#home"><img src="assets/lmr-logo.png" alt="LMR logo"><span>LMR CLOTHING</span></a>
+  <nav class="navlinks"><a href="#shop">Shop</a><a href="#story">Our Story</a><button id="cartOpen">Bag (<span id="cartCount">0</span>)</button><button id="adminOpen">Admin</button></nav>
+</header>
+<main>
+<section class="hero" id="home">
+  <div><div class="eyebrow">NEW SEASON</div><h1>TROPA<br><span>COLLECTION</span></h1><p>BUILT BY FRIENDSHIP.<br>WALANG IWANAN.</p><a class="btn" href="#shop">SHOP NOW&nbsp; →</a></div>
+  </section>
+<section class="section" id="shop">
+  <div class="section-head"><div><div class="eyebrow">The first drop</div><h2>SHOP THE COLLECTION</h2></div><p>Two colorways. One message. Choose your fit and send your order directly to LMR Clothing.</p></div>
+  <div class="products" id="products"></div>
+</section>
+<section class="section story" id="story">
+  <div class="story-logo"><img src="assets/lmr-logo.png" alt="LMR Clothing logo"></div>
+  <div class="story-copy"><div class="eyebrow">What LMR stands for</div><h2>MORE THAN A LOGO.</h2><p>LMR comes from the initials behind the brand. The cross is a symbol of positivity — a reminder to carry hope, encourage one another, and keep moving forward.</p><p>The TROPA collection celebrates friendship and loyalty: the people who stand beside you through every chapter.</p><blockquote>BUILT BY FRIENDSHIP.<br>WALANG IWANAN.</blockquote></div>
+</section>
+<section class="banner"><div><div class="eyebrow">Have a question?</div><h2>YOUR TROPA. YOUR STYLE.</h2><p>Need help with sizes, availability, or delivery? Contact us and we'll help you with your order.</p></div><button class="btn" id="contactOrder">Contact to order ↗</button></section>
+</main>
+<footer class="footer"><div><strong>LMR CLOTHING</strong><br><br>BUILT BY POSITIVITY.</div><div>© <span id="year"></span> LMR Clothing · All rights reserved<br><br><span id="footerContact">Orders currently handled by WhatsApp.</span></div></footer>
+
+<div class="overlay" id="adminModal"><div class="modal">
+  <div class="modal-head"><h2>LMR STORE ADMIN</h2><button class="x" data-close="adminModal">×</button></div>
+  <div id="adminLogin">
+    <p class="notice">This starter version stores products in this browser only. Set an admin password for this device. It is not a secure online login; do not use a password you use elsewhere.</p>
+    <div class="field"><label>Admin password</label><input id="adminPassword" type="password" placeholder="Create or enter password"></div>
+    <div class="modal-actions"><button class="btn" id="adminLoginBtn">Continue</button></div>
+    <p class="notice" id="loginHelp">First use: choose a password to lock the admin panel on this browser.</p>
+  </div>
+  <div id="adminPanel" class="hidden">
+    <p class="notice">Manage products, prices, sizes, stock status, and your WhatsApp contact. Changes save in this browser. To share products across devices, we will later connect a hosted database.</p>
+    <div class="modal-actions"><button class="btn" id="newProductBtn">+ Add product</button><button class="btn secondary" id="settingsBtn">Store settings</button><button class="btn secondary" id="exportBtn">Export backup</button><button class="btn secondary" id="importBtn">Import backup</button><input type="file" id="importFile" accept="application/json" class="hidden"></div>
+    <div id="productFormWrap" class="hidden">
+      <h3 id="formTitle">Add product</h3>
+      <div class="formgrid">
+        <div class="field"><label>Product name</label><input id="pName" placeholder="e.g. TROPA Black Tee"></div>
+        <div class="field"><label>Price (PHP)</label><input id="pPrice" type="number" min="0" step="1" placeholder="699"></div>
+        <div class="field"><label>Category</label><input id="pCategory" placeholder="T-Shirts"></div>
+        <div class="field"><label>Sizes (comma-separated)</label><input id="pSizes" placeholder="S, M, L, XL, XXL"></div>
+        <div class="field"><label>Color options</label><input id="pColors" placeholder="Black"></div>
+        <div class="field"><label>Status</label><select id="pStatus"><option value="available">Available</option><option value="soldout">Sold out</option><option value="new">New drop</option></select></div>
+        <div class="field full"><label>Description</label><textarea id="pDescription" placeholder="Product details"></textarea></div>
+        <div class="field full"><label>Product image</label><input id="pImage" type="file" accept="image/*"><small class="notice">Use compressed JPG/PNG images for best performance. If no image is selected, the current image is kept.</small></div>
+      </div>
+      <div class="modal-actions"><button class="btn" id="saveProductBtn">Save product</button><button class="btn secondary" id="cancelProductBtn">Cancel</button></div>
+    </div>
+    <div id="settingsForm" class="hidden">
+      <h3>Store settings</h3><div class="formgrid">
+        <div class="field full"><label>WhatsApp number (international format, digits only)</label><input id="settingPhone" placeholder="639171234567"></div>
+        <div class="field full"><label>Order/contact note</label><input id="settingNote" placeholder="Delivery fee confirmed after address"></div>
+      </div><div class="modal-actions"><button class="btn" id="saveSettingsBtn">Save settings</button><button class="btn secondary" id="cancelSettingsBtn">Cancel</button></div>
+    </div>
+    <div class="admin-list" id="adminList"></div>
+  </div>
+</div></div>
+
+<div class="overlay" id="productModal"><div class="modal">
+  <div class="modal-head"><h2 id="detailTitle">Product details</h2><button class="x" data-close="productModal">×</button></div>
+  <div id="productDetail"></div>
+</div></div>
+<div class="overlay" id="cartModal"><div class="modal">
+  <div class="modal-head"><h2>YOUR SHOPPING BAG</h2><button class="x" data-close="cartModal">×</button></div>
+  <div id="cartContent"></div>
+</div></div>
+<div class="overlay" id="photoLightbox" role="dialog" aria-modal="true" aria-label="Full product photo"><button class="lightbox-close" id="closeLightbox" aria-label="Close full photo">×</button><img id="lightboxImage" class="lightbox-image" alt="Full-size product photo"><div id="lightboxCaption" class="lightbox-caption"></div></div>
+<div id="toast" class="toast hidden"></div>
+<script>
+const defaultProducts=[
+ {id:"tropa-black",name:"TROPA Black Tee",price:699,category:"T-Shirts",sizes:["S","M","L","XL","XXL"],colors:["Black"],status:"new",description:"Black streetwear tee featuring the TROPA front mark and illustrated friendship graphic on the back.",image:"assets/tro pa-black-mockup.png"},
+ {id:"tropa-white",name:"TROPA White Tee",price:699,category:"T-Shirts",sizes:["S","M","L","XL","XXL"],colors:["White"],status:"new",description:"White streetwear tee featuring the TROPA front mark and illustrated friendship graphic on the back.",image:"assets/tro pa-white-mockup.png"}
+];
+const $=id=>document.getElementById(id);
+const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+let products=load("lmr_products",defaultProducts), cart=load("lmr_cart",[]), settings=load("lmr_settings",{phone:"",note:"Delivery fee confirmed after address"}), editId=null, adminUnlocked=false;
+function save(){localStorage.setItem("lmr_products",JSON.stringify(products));localStorage.setItem("lmr_cart",JSON.stringify(cart));localStorage.setItem("lmr_settings",JSON.stringify(settings))}
+function money(n){return "₱"+Number(n||0).toLocaleString("en-PH",{maximumFractionDigits:2})}
+function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function toast(msg){$("toast").textContent=msg;$("toast").classList.remove("hidden");setTimeout(()=>$("toast").classList.add("hidden"),2600)}
+function show(id){$(id).classList.add("show")}function hide(id){$(id).classList.remove("show")}
+function renderProducts(){
+ const host=$("products");host.innerHTML="";
+ products.forEach(p=>{const el=document.createElement("article");el.className="product";
+ el.innerHTML=`<div class="product-image" role="button" tabindex="0" aria-label="View full photo of ${escapeHtml(p.name)}" data-photo="${escapeHtml(p.id)}"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy">${p.status==="soldout"?'<span class="badge">Sold out</span>':p.status==="new"?'<span class="badge">New drop</span>':''}</div><div class="product-info"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.description)}</p><div class="price-row"><span class="price">${money(p.price)}</span><button class="small-btn" data-detail="${escapeHtml(p.id)}" ${p.status==="soldout"?"disabled":""}>${p.status==="soldout"?"Sold out":"View / Order"}</button></div></div>`;
+ host.appendChild(el)});
+ host.querySelectorAll("[data-detail]").forEach(b=>b.addEventListener("click",()=>openDetail(b.dataset.detail)));host.querySelectorAll("[data-photo]").forEach(el=>{const open=()=>openPhoto(el.dataset.photo);el.addEventListener("click",open);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}})});
+}
+function openDetail(id){const p=products.find(x=>x.id===id);if(!p)return;$("detailTitle").textContent=p.name;
+ $("productDetail").innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start"><img src="${escapeHtml(p.image)}" style="width:100%;background:#0b0b0c" alt="${escapeHtml(p.name)}"><div><div class="eyebrow">${escapeHtml(p.category)}</div><h2>${escapeHtml(p.name)}</h2><p style="color:var(--gold);font-size:22px;font-weight:800">${money(p.price)}</p><p class="notice">${escapeHtml(p.description)}</p><div class="field" style="margin:15px 0"><label>Size</label><select id="detailSize">${(p.sizes||["One size"]).map(s=>`<option>${escapeHtml(s)}</option>`).join("")}</select></div><div class="field" style="margin:15px 0"><label>Color</label><select id="detailColor">${(p.colors||["Default"]).map(s=>`<option>${escapeHtml(s)}</option>`).join("")}</select></div><div class="field"><label>Quantity</label><input id="detailQty" type="number" min="1" max="20" value="1"></div><button class="btn" style="width:100%;margin-top:16px" id="addCartBtn">Add to bag</button></div></div>`;
+ $("addCartBtn").onclick=()=>{const size=$("detailSize").value,color=$("detailColor").value,qty=Math.max(1,Math.min(20,Number($("detailQty").value)||1));const found=cart.find(x=>x.id===id&&x.size===size&&x.color===color);if(found)found.qty+=qty;else cart.push({id,size,color,qty});save();renderCartCount();hide("productModal");toast("Added to your bag")};show("productModal")}
+function renderCartCount(){$("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0)}
+function renderCart(){const host=$("cartContent");cart=cart.filter(x=>products.some(p=>p.id===x.id));if(!cart.length){host.innerHTML='<div class="empty">Your bag is empty. Find your first-drop favorite.</div><p><a class="btn" href="#shop" id="continueShop">Continue shopping</a></p>';return}
+ host.innerHTML=`<div class="cart-list">${cart.map((x,i)=>{const p=products.find(p=>p.id===x.id);return `<div class="cart-item"><img src="${escapeHtml(p.image)}" alt=""><div><strong>${escapeHtml(p.name)}</strong><br><small>${escapeHtml(x.size)} · ${escapeHtml(x.color)} · ${money(p.price)} each</small><div class="qty"><button data-minus="${i}">−</button><span>${x.qty}</span><button data-plus="${i}">+</button><button data-remove="${i}" style="width:auto;padding:0 8px">Remove</button></div></div><strong>${money(p.price*x.qty)}</strong></div>`}).join("")}</div><div class="cart-total"><span>Subtotal</span><span>${money(cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0))}</span></div><p class="notice">Delivery fees and final availability will be confirmed with you before payment. ${escapeHtml(settings.note)}</p><div class="field"><label>Your name</label><input id="buyerName" placeholder="Full name"></div><div class="field" style="margin-top:12px"><label>Delivery address / city</label><textarea id="buyerAddress" placeholder="Address, barangay, city"></textarea></div><div class="field" style="margin-top:12px"><label>Contact number</label><input id="buyerPhone" placeholder="09xx xxx xxxx"></div><div class="modal-actions"><button class="btn" id="whatsappCheckout">Order via WhatsApp ↗</button><button class="btn secondary" id="clearCart">Clear bag</button></div>`;
+ host.querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>{const i=+b.dataset.minus;cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);save();renderCartCount();renderCart()});
+ host.querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>{cart[+b.dataset.plus].qty++;save();renderCartCount();renderCart()});
+ host.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.remove,1);save();renderCartCount();renderCart()});
+ $("clearCart").onclick=()=>{cart=[];save();renderCartCount();renderCart()};
+ $("whatsappCheckout").onclick=()=>{if(!settings.phone){toast("Store owner: set WhatsApp number in Admin → Store settings.");return}const name=$("buyerName").value.trim(),addr=$("buyerAddress").value.trim(),phone=$("buyerPhone").value.trim();if(!name||!addr||!phone){toast("Please complete your name, address, and contact number.");return}const lines=cart.map(x=>{const p=products.find(p=>p.id===x.id);return `• ${p.name} | ${x.size} | ${x.color} | Qty ${x.qty} | ${money(p.price*x.qty)}`});const total=cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0);const msg=`Hello LMR Clothing! I'd like to place an order:\n\n${lines.join("\n")}\n\nSubtotal: ${money(total)}\nName: ${name}\nDelivery address: ${addr}\nContact: ${phone}\n\nPlease confirm availability, delivery fee, and payment instructions.`;window.open(`https://wa.me/${settings.phone}?text=${encodeURIComponent(msg)}`,"_blank")};
+}
+$("cartOpen").onclick=()=>{renderCart();show("cartModal")};
+$("contactOrder").onclick=()=>{if(settings.phone)window.open(`https://wa.me/${settings.phone}?text=${encodeURIComponent("Hello LMR Clothing! I'd like to ask about your TROPA collection.")}`,"_blank");else{show("adminModal");toast("Set your WhatsApp number in Admin → Store settings first.")}};
+document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>hide(b.dataset.close));
+document.querySelectorAll(".overlay").forEach(o=>o.addEventListener("click",e=>{if(e.target===o)hide(o.id)}));
+$("adminOpen").onclick=()=>{show("adminModal");$("adminLogin").classList.toggle("hidden",adminUnlocked);$("adminPanel").classList.toggle("hidden",!adminUnlocked);if(adminUnlocked)renderAdminList()};
+function renderAdminList(){$("adminList").innerHTML=products.map(p=>`<div class="admin-item"><img src="${escapeHtml(p.image)}" alt=""><div class="grow"><strong>${escapeHtml(p.name)}</strong><small>${money(p.price)} · ${escapeHtml(p.status)}</small></div><button class="small-btn" data-edit="${escapeHtml(p.id)}">Edit</button><button class="small-btn" data-delete="${escapeHtml(p.id)}">Delete</button></div>`).join("");$("adminList").querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>startEdit(b.dataset.edit));$("adminList").querySelectorAll("[data-delete]").forEach(b=>b.onclick=()=>{if(confirm("Delete this product?")){products=products.filter(p=>p.id!==b.dataset.delete);save();renderProducts();renderAdminList();toast("Product deleted")}})}
+$("adminLoginBtn").onclick=()=>{const pw=$("adminPassword").value;if(!pw){toast("Enter a password.");return}const saved=localStorage.getItem("lmr_admin_password");if(!saved){localStorage.setItem("lmr_admin_password",pw);adminUnlocked=true;toast("Admin password created on this browser.")}else if(saved===pw){adminUnlocked=true;toast("Admin unlocked.")}else{toast("Incorrect password.");return}$("adminLogin").classList.add("hidden");$("adminPanel").classList.remove("hidden");renderAdminList()};
+function startEdit(id){const p=products.find(p=>p.id===id);if(!p)return;editId=id;$("formTitle").textContent="Edit product";$("pName").value=p.name;$("pPrice").value=p.price;$("pCategory").value=p.category;$("pSizes").value=(p.sizes||[]).join(", ");$("pColors").value=(p.colors||[]).join(", ");$("pStatus").value=p.status;$("pDescription").value=p.description;$("pImage").value="";$("productFormWrap").classList.remove("hidden");$("settingsForm").classList.add("hidden");$("productFormWrap").scrollIntoView({behavior:"smooth",block:"start"})}
+function resetProductForm(){editId=null;["pName","pPrice","pCategory","pSizes","pColors","pDescription","pImage"].forEach(id=>$(id).value="");$("pStatus").value="available";$("productFormWrap").classList.add("hidden")}
+$("newProductBtn").onclick=()=>{resetProductForm();$("formTitle").textContent="Add product";$("productFormWrap").classList.remove("hidden");$("settingsForm").classList.add("hidden")};
+$("cancelProductBtn").onclick=resetProductForm;
+$("saveProductBtn").onclick=async()=>{const name=$("pName").value.trim(),price=Number($("pPrice").value);if(!name||!Number.isFinite(price)||price<0){toast("Enter a product name and valid price.");return}const old=products.find(p=>p.id===editId);let image=old?.image||"";const file=$("pImage").files[0];if(file){if(file.size>1.5*1024*1024){toast("Image is over 1.5 MB. Please compress it first.");return}image=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}if(!image){toast("Please select a product image.");return}const item={id:editId||("p-"+Date.now()),name,price,category:$("pCategory").value.trim()||"Clothing",sizes:$("pSizes").value.split(",").map(x=>x.trim()).filter(Boolean),colors:$("pColors").value.split(",").map(x=>x.trim()).filter(Boolean),status:$("pStatus").value,description:$("pDescription").value.trim(),image};if(editId)products=products.map(p=>p.id===editId?item:p);else products.push(item);save();renderProducts();renderAdminList();resetProductForm();toast("Product saved on this browser.")};
+$("settingsBtn").onclick=()=>{$("settingPhone").value=settings.phone;$("settingNote").value=settings.note;$("settingsForm").classList.remove("hidden");$("productFormWrap").classList.add("hidden")};
+$("cancelSettingsBtn").onclick=()=>$("settingsForm").classList.add("hidden");
+$("saveSettingsBtn").onclick=()=>{settings.phone=$("settingPhone").value.replace(/\D/g,"");settings.note=$("settingNote").value.trim();save();$("settingsForm").classList.add("hidden");$("footerContact").textContent=settings.phone?"WhatsApp ordering available.":"Orders currently handled by WhatsApp.";toast("Store settings saved.")};
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({products,settings},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="lmr-store-backup.json";a.click();URL.revokeObjectURL(a.href)};
+$("importBtn").onclick=()=>$("importFile").click();
+$("importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!Array.isArray(d.products))throw new Error();if(confirm("Replace this browser's products and settings with the backup?")){products=d.products;settings=d.settings||settings;save();renderProducts();renderAdminList();toast("Backup imported.")}}catch{toast("Invalid backup file.")}e.target.value=""};
+function openPhoto(id){const p=products.find(x=>x.id===id);if(!p)return;$("lightboxImage").src=p.image;$("lightboxImage").alt=p.name+" full-size photo";$("lightboxCaption").textContent=p.name+" — tap outside or press Escape to close";show("photoLightbox")}function closePhoto(){hide("photoLightbox");$("lightboxImage").src=""}$("closeLightbox").addEventListener("click",closePhoto);$("photoLightbox").addEventListener("click",e=>{if(e.target===$("photoLightbox"))closePhoto()});document.addEventListener("keydown",e=>{if(e.key==="Escape"){closePhoto();hide("productModal");hide("cartModal");hide("adminModal")}});$("year").textContent=new Date().getFullYear();if(settings.phone)$("footerContact").textContent="WhatsApp ordering available.";renderProducts();renderCartCount();
+</script>
+</body>
+</html>
