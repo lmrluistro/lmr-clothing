@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="LMR Clothing — TROPA streetwear. Built by friendship. Walang iwanan."><link rel="preload" as="image" href="assets/tropa-models-banner.webp" fetchpriority="high">
 <meta name="theme-color" content="#101010">
 <title>LMR Clothing — Built by Positivity</title>
 <style>
@@ -48,7 +48,7 @@
 
 
 /* Latest TROPA model campaign banner */
-.hero{position:relative;isolation:isolate;overflow:hidden;background:#080808 url('assets/tropa-models-banner.png') center center/cover no-repeat;min-height:clamp(430px,42vw,690px);grid-template-columns:minmax(0,1fr);padding:0 7%}
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#080808 url('assets/tropa-models-banner.webp') center center/cover no-repeat;min-height:clamp(430px,42vw,690px);grid-template-columns:minmax(0,1fr);padding:0 7%}
 .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.70) 28%,rgba(0,0,0,.25) 52%,rgba(0,0,0,.05) 100%);z-index:-1}
 .hero>div:first-child{max-width:560px;position:relative;z-index:1}
 .hero .eyebrow{color:#f0e600}
@@ -58,14 +58,14 @@
 .hero .btn:hover{background:#d8d000;border-color:#d8d000}
 .hero-visual{display:none}
 @media(max-width:800px){
- .hero{min-height:540px;padding:38px 5%;background-position:58% center;align-items:end}
+ .hero{min-height:clamp(460px,72vw,540px);padding:38px 5%;background-position:center center;align-items:end}
  .hero:before{background:linear-gradient(0deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.78) 42%,rgba(0,0,0,.12) 100%)}
  .hero>div:first-child{max-width:100%;align-self:end;padding-bottom:12px;text-align:left}
  .hero h1{font-size:clamp(42px,10vw,66px)}
  .hero p{font-size:13px}
 }
 @media(max-width:480px){
- .hero{min-height:500px;padding:28px 5%;background-position:58% center}
+ .hero{min-height:460px;padding:28px 5%;background-position:center center}
  .hero h1{font-size:clamp(38px,11vw,52px)}
  .hero .btn{padding:13px 16px}
 }
@@ -75,7 +75,7 @@
 <body>
 <div class="topbar">TROPA — FIRST DROP · BUILT BY FRIENDSHIP · WALANG IWANAN</div>
 <header class="nav">
-  <a class="brand" href="#home"><img src="assets/lmr-logo.png" alt="LMR logo"><span>LMR CLOTHING</span></a>
+  <a class="brand" href="#home"><img src="assets/lmr-logo.webp" alt="LMR logo"><span>LMR CLOTHING</span></a>
   <nav class="navlinks"><a href="#shop">Shop</a><a href="#story">Our Story</a><button id="cartOpen">Bag (<span id="cartCount">0</span>)</button><button id="adminOpen">Admin</button></nav>
 </header>
 <main>
@@ -87,7 +87,7 @@
   <div class="products" id="products"></div>
 </section>
 <section class="section story" id="story">
-  <div class="story-logo"><img src="assets/lmr-logo.png" alt="LMR Clothing logo"></div>
+  <div class="story-logo"><img src="assets/lmr-logo.webp" alt="LMR Clothing logo"></div>
   <div class="story-copy"><div class="eyebrow">What LMR stands for</div><h2>MORE THAN A LOGO.</h2><p>LMR comes from the initials behind the brand. The cross is a symbol of positivity — a reminder to carry hope, encourage one another, and keep moving forward.</p><p>The TROPA collection celebrates friendship and loyalty: the people who stand beside you through every chapter.</p><blockquote>BUILT BY FRIENDSHIP.<br>WALANG IWANAN.</blockquote></div>
 </section>
 <section class="banner"><div><div class="eyebrow">Have a question?</div><h2>YOUR TROPA. YOUR STYLE.</h2><p>Need help with sizes, availability, or delivery? Contact us and we'll help you with your order.</p></div><button class="btn" id="contactOrder">Contact to order ↗</button></section>
@@ -122,7 +122,7 @@
     <div id="settingsForm" class="hidden">
       <h3>Store settings</h3><div class="formgrid">
         <div class="field full"><label>WhatsApp number (international format, digits only)</label><input id="settingPhone" placeholder="639171234567"></div>
-        <div class="field full"><label>Order/contact note</label><input id="settingNote" placeholder="Delivery fee confirmed after address"></div>
+        <div class="field full"><label>Facebook Page URL or username (for Messenger orders)</label><input id="settingMessenger" placeholder="https://www.facebook.com/YourPage"></div>\n        <div class="field"><label>GCash registered name</label><input id="settingGcashName" placeholder="Name shown in GCash"></div>\n        <div class="field"><label>GCash mobile number</label><input id="settingGcashNumber" inputmode="numeric" placeholder="09xxxxxxxxx"></div>\n        <div class="field full"><label>GCash QR image (optional)</label><input id="settingGcashQr" type="file" accept="image/*"><small class="notice">Use your GCash receiving QR only. Do not upload an MPIN or OTP. QR image stays in this browser unless you publish it as a website asset.</small></div>\n        <div class="field full"><label>Order/contact note</label><input id="settingNote" placeholder="Delivery fee confirmed after address"></div>
       </div><div class="modal-actions"><button class="btn" id="saveSettingsBtn">Save settings</button><button class="btn secondary" id="cancelSettingsBtn">Cancel</button></div>
     </div>
     <div class="admin-list" id="adminList"></div>
@@ -141,12 +141,12 @@
 <div id="toast" class="toast hidden"></div>
 <script>
 const defaultProducts=[
- {id:"tropa-black",name:"TROPA Black Tee",price:699,category:"T-Shirts",sizes:["S","M","L","XL","XXL"],colors:["Black"],status:"new",description:"Black streetwear tee featuring the TROPA front mark and illustrated friendship graphic on the back.",image:"assets/tro pa-black-mockup.png"},
- {id:"tropa-white",name:"TROPA White Tee",price:699,category:"T-Shirts",sizes:["S","M","L","XL","XXL"],colors:["White"],status:"new",description:"White streetwear tee featuring the TROPA front mark and illustrated friendship graphic on the back.",image:"assets/tro pa-white-mockup.png"}
+ {id:"tropa-black",name:"TROPA Black Tee",price:699,category:"T-Shirts",sizes:["S","M","L","XL","XXL"],colors:["Black"],status:"new",description:"Black streetwear tee featuring the TROPA front mark and illustrated friendship graphic on the back.",image:"assets/tropa-black-mockup.webp"},
+ {id:"tropa-white",name:"TROPA White Tee",price:699,category:"T-Shirts",sizes:["S","M","L","XL","XXL"],colors:["White"],status:"new",description:"White streetwear tee featuring the TROPA front mark and illustrated friendship graphic on the back.",image:"assets/tropa-white-mockup.webp"}
 ];
 const $=id=>document.getElementById(id);
 const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
-let products=load("lmr_products",defaultProducts), cart=load("lmr_cart",[]), settings=load("lmr_settings",{phone:"",note:"Delivery fee confirmed after address"}), editId=null, adminUnlocked=false;
+let products=load("lmr_products",defaultProducts), cart=load("lmr_cart",[]), settings=load("lmr_settings",{phone:"",note:"Delivery fee confirmed after address",messengerPage:"",gcashNumber:"",gcashName:"",gcashQr:""}), editId=null, adminUnlocked=false;
 function save(){localStorage.setItem("lmr_products",JSON.stringify(products));localStorage.setItem("lmr_cart",JSON.stringify(cart));localStorage.setItem("lmr_settings",JSON.stringify(settings))}
 function money(n){return "₱"+Number(n||0).toLocaleString("en-PH",{maximumFractionDigits:2})}
 function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
@@ -164,10 +164,13 @@ function openDetail(id){const p=products.find(x=>x.id===id);if(!p)return;$("deta
  $("addCartBtn").onclick=()=>{const size=$("detailSize").value,color=$("detailColor").value,qty=Math.max(1,Math.min(20,Number($("detailQty").value)||1));const found=cart.find(x=>x.id===id&&x.size===size&&x.color===color);if(found)found.qty+=qty;else cart.push({id,size,color,qty});save();renderCartCount();hide("productModal");toast("Added to your bag")};show("productModal")}
 function renderCartCount(){$("cartCount").textContent=cart.reduce((s,x)=>s+x.qty,0)}
 function renderCart(){const host=$("cartContent");cart=cart.filter(x=>products.some(p=>p.id===x.id));if(!cart.length){host.innerHTML='<div class="empty">Your bag is empty. Find your first-drop favorite.</div><p><a class="btn" href="#shop" id="continueShop">Continue shopping</a></p>';return}
- host.innerHTML=`<div class="cart-list">${cart.map((x,i)=>{const p=products.find(p=>p.id===x.id);return `<div class="cart-item"><img src="${escapeHtml(p.image)}" alt=""><div><strong>${escapeHtml(p.name)}</strong><br><small>${escapeHtml(x.size)} · ${escapeHtml(x.color)} · ${money(p.price)} each</small><div class="qty"><button data-minus="${i}">−</button><span>${x.qty}</span><button data-plus="${i}">+</button><button data-remove="${i}" style="width:auto;padding:0 8px">Remove</button></div></div><strong>${money(p.price*x.qty)}</strong></div>`}).join("")}</div><div class="cart-total"><span>Subtotal</span><span>${money(cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0))}</span></div><p class="notice">Delivery fees and final availability will be confirmed with you before payment. ${escapeHtml(settings.note)}</p><div class="field"><label>Your name</label><input id="buyerName" placeholder="Full name"></div><div class="field" style="margin-top:12px"><label>Delivery address / city</label><textarea id="buyerAddress" placeholder="Address, barangay, city"></textarea></div><div class="field" style="margin-top:12px"><label>Contact number</label><input id="buyerPhone" placeholder="09xx xxx xxxx"></div><div class="modal-actions"><button class="btn" id="whatsappCheckout">Order via WhatsApp ↗</button><button class="btn secondary" id="clearCart">Clear bag</button></div>`;
+ host.innerHTML=`<div class="cart-list">${cart.map((x,i)=>{const p=products.find(p=>p.id===x.id);return `<div class="cart-item"><img src="${escapeHtml(p.image)}" alt=""><div><strong>${escapeHtml(p.name)}</strong><br><small>${escapeHtml(x.size)} · ${escapeHtml(x.color)} · ${money(p.price)} each</small><div class="qty"><button data-minus="${i}">−</button><span>${x.qty}</span><button data-plus="${i}">+</button><button data-remove="${i}" style="width:auto;padding:0 8px">Remove</button></div></div><strong>${money(p.price*x.qty)}</strong></div>`}).join("")}</div><div class="cart-total"><span>Subtotal</span><span>${money(cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0))}</span></div><p class="notice">Delivery fees and final availability will be confirmed with you before payment. ${escapeHtml(settings.note)}</p><div class="field"><label>Your name</label><input id="buyerName" placeholder="Full name"></div><div class="field" style="margin-top:12px"><label>Delivery address / city</label><textarea id="buyerAddress" placeholder="Address, barangay, city"></textarea></div><div class="field" style="margin-top:12px"><label>Contact number</label><input id="buyerPhone" placeholder="09xx xxx xxxx"></div><div style="margin-top:22px;padding:18px;background:#0b0b0c;border:1px solid #39383a"><div class="eyebrow">Payment option</div><h3 style="margin:10px 0">Pay with GCash</h3><p class="notice">Use the receiving QR or number below. Confirm your final total and delivery fee with LMR Clothing before paying. Payment is verified manually; this website cannot automatically confirm a transfer.</p><div id="gcashPaymentInfo"></div><div class="modal-actions"><button class="btn" id="gcashMessengerOrder">Continue via Messenger ↗</button><button class="btn secondary" id="whatsappCheckout">Continue via WhatsApp ↗</button></div></div><div class="modal-actions"><button class="btn secondary" id="clearCart">Clear bag</button></div>`;
  host.querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>{const i=+b.dataset.minus;cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);save();renderCartCount();renderCart()});
  host.querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>{cart[+b.dataset.plus].qty++;save();renderCartCount();renderCart()});
  host.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.remove,1);save();renderCartCount();renderCart()});
+ const gcashHost=$("gcashPaymentInfo");
+ gcashHost.innerHTML=`${settings.gcashQr?`<img src="${settings.gcashQr}" alt="LMR Clothing GCash QR" style="display:block;width:min(260px,100%);background:#fff;padding:8px;margin:12px auto">`:""}<p style="margin:8px 0;color:#fff"><strong>GCash name:</strong> ${escapeHtml(settings.gcashName||"Not configured yet")}</p><p style="margin:8px 0;color:#fff"><strong>GCash number:</strong> ${escapeHtml(settings.gcashNumber||"Not configured yet")}</p>`;
+ $("gcashMessengerOrder").onclick=()=>{if(!settings.messengerPage){toast("Set your Facebook Page URL in Admin → Store settings first.");return}const name=$("buyerName").value.trim(),addr=$("buyerAddress").value.trim(),phone=$("buyerPhone").value.trim();if(!name||!addr||!phone){toast("Please complete your name, address, and contact number.");return}const lines=cart.map(x=>{const p=products.find(p=>p.id===x.id);return `${p.name} | ${x.size} | ${x.color} | Qty ${x.qty} | ${money(p.price*x.qty)}`});const total=cart.reduce((sum,x)=>sum+products.find(p=>p.id===x.id).price*x.qty,0);const msg=`Hello LMR Clothing! I want to order:\n${lines.join("\n")}\nSubtotal: ${money(total)}\nName: ${name}\nDelivery address: ${addr}\nContact: ${phone}\nPayment: GCash (I'll send proof after confirming delivery fee).`;try{localStorage.setItem("lmr_pending_order_message",msg)}catch{}window.open(settings.messengerPage,"_blank");toast("Messenger opened. Copy your order summary if it is not prefilled.")};
  $("clearCart").onclick=()=>{cart=[];save();renderCartCount();renderCart()};
  $("whatsappCheckout").onclick=()=>{if(!settings.phone){toast("Store owner: set WhatsApp number in Admin → Store settings.");return}const name=$("buyerName").value.trim(),addr=$("buyerAddress").value.trim(),phone=$("buyerPhone").value.trim();if(!name||!addr||!phone){toast("Please complete your name, address, and contact number.");return}const lines=cart.map(x=>{const p=products.find(p=>p.id===x.id);return `• ${p.name} | ${x.size} | ${x.color} | Qty ${x.qty} | ${money(p.price*x.qty)}`});const total=cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0);const msg=`Hello LMR Clothing! I'd like to place an order:\n\n${lines.join("\n")}\n\nSubtotal: ${money(total)}\nName: ${name}\nDelivery address: ${addr}\nContact: ${phone}\n\nPlease confirm availability, delivery fee, and payment instructions.`;window.open(`https://wa.me/${settings.phone}?text=${encodeURIComponent(msg)}`,"_blank")};
 }
@@ -183,9 +186,9 @@ function resetProductForm(){editId=null;["pName","pPrice","pCategory","pSizes","
 $("newProductBtn").onclick=()=>{resetProductForm();$("formTitle").textContent="Add product";$("productFormWrap").classList.remove("hidden");$("settingsForm").classList.add("hidden")};
 $("cancelProductBtn").onclick=resetProductForm;
 $("saveProductBtn").onclick=async()=>{const name=$("pName").value.trim(),price=Number($("pPrice").value);if(!name||!Number.isFinite(price)||price<0){toast("Enter a product name and valid price.");return}const old=products.find(p=>p.id===editId);let image=old?.image||"";const file=$("pImage").files[0];if(file){if(file.size>1.5*1024*1024){toast("Image is over 1.5 MB. Please compress it first.");return}image=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)})}if(!image){toast("Please select a product image.");return}const item={id:editId||("p-"+Date.now()),name,price,category:$("pCategory").value.trim()||"Clothing",sizes:$("pSizes").value.split(",").map(x=>x.trim()).filter(Boolean),colors:$("pColors").value.split(",").map(x=>x.trim()).filter(Boolean),status:$("pStatus").value,description:$("pDescription").value.trim(),image};if(editId)products=products.map(p=>p.id===editId?item:p);else products.push(item);save();renderProducts();renderAdminList();resetProductForm();toast("Product saved on this browser.")};
-$("settingsBtn").onclick=()=>{$("settingPhone").value=settings.phone;$("settingNote").value=settings.note;$("settingsForm").classList.remove("hidden");$("productFormWrap").classList.add("hidden")};
+$("settingsBtn").onclick=()=>{$("settingPhone").value=settings.phone;$("settingMessenger").value=settings.messengerPage||"";$("settingGcashName").value=settings.gcashName||"";$("settingGcashNumber").value=settings.gcashNumber||"";$("settingGcashQr").value="";$("settingNote").value=settings.note;$("settingsForm").classList.remove("hidden");$("productFormWrap").classList.add("hidden")};
 $("cancelSettingsBtn").onclick=()=>$("settingsForm").classList.add("hidden");
-$("saveSettingsBtn").onclick=()=>{settings.phone=$("settingPhone").value.replace(/\D/g,"");settings.note=$("settingNote").value.trim();save();$("settingsForm").classList.add("hidden");$("footerContact").textContent=settings.phone?"WhatsApp ordering available.":"Orders currently handled by WhatsApp.";toast("Store settings saved.")};
+$("saveSettingsBtn").onclick=async()=>{settings.phone=$("settingPhone").value.replace(/\D/g,"");settings.messengerPage=$("settingMessenger").value.trim();settings.gcashName=$("settingGcashName").value.trim();settings.gcashNumber=$("settingGcashNumber").value.trim();settings.note=$("settingNote").value.trim();const qrFile=$("settingGcashQr").files[0];if(qrFile){if(qrFile.size>1.5*1024*1024){toast("QR image is over 1.5 MB. Please compress it first.");return}settings.gcashQr=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(qrFile)})}save();$("settingsForm").classList.add("hidden");$("footerContact").textContent=settings.phone?"WhatsApp ordering available.":"Messenger ordering available.";toast("Store settings saved in this browser.")};
 $("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({products,settings},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="lmr-store-backup.json";a.click();URL.revokeObjectURL(a.href)};
 $("importBtn").onclick=()=>$("importFile").click();
 $("importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!Array.isArray(d.products))throw new Error();if(confirm("Replace this browser's products and settings with the backup?")){products=d.products;settings=d.settings||settings;save();renderProducts();renderAdminList();toast("Backup imported.")}}catch{toast("Invalid backup file.")}e.target.value=""};
