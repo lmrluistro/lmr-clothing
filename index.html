@@ -70,22 +70,28 @@
  .hero .btn{padding:13px 16px}
 }
 
+
+/* LMR brand song player */
+.lmr-music-player{position:fixed;right:18px;bottom:18px;z-index:9998;display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid #4a4540;border-radius:999px;background:rgba(10,10,11,.94);box-shadow:0 8px 30px #0008;backdrop-filter:blur(10px);color:#f6f4f0;max-width:calc(100vw - 24px)}
+.lmr-music-player button{border:0;border-radius:50%;width:36px;height:36px;background:var(--red,#e6002d);color:#fff;font-size:15px;font-weight:800;flex:0 0 auto}
+.lmr-music-copy{min-width:0;line-height:1.2}
+.lmr-music-title{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.lmr-music-status{font-size:10px;color:#c7a879;margin-top:3px}
+.lmr-music-volume{width:64px;accent-color:#e6002d}
+@media(max-width:520px){.lmr-music-player{right:10px;bottom:10px;gap:8px;padding:8px 10px}.lmr-music-title{font-size:10px}.lmr-music-volume{width:48px}}
+
 </style>
 </head>
 <body>
 <div class="topbar">TROPA — FIRST DROP · BUILT BY FRIENDSHIP · WALANG IWANAN</div>
 <header class="nav">
   <a class="brand" href="#home"><img src="assets/lmr-logo.webp" alt="LMR logo"><span>LMR CLOTHING</span></a>
-  <nav class="navlinks"><a href="#shop">Shop</a><a href="#new-collection">New Collection</a><a href="#story">Our Story</a><button id="cartOpen">Bag (<span id="cartCount">0</span>)</button><button id="adminOpen">Admin</button></nav>
+  <nav class="navlinks"><a href="#new-collection">Shop</a><a href="#new-collection">New Collection</a><a href="#story">Our Story</a><button id="cartOpen">Bag (<span id="cartCount">0</span>)</button><button id="adminOpen">Admin</button></nav>
 </header>
 <main>
 <section class="hero" id="home">
-  <div><div class="eyebrow">NEW SEASON</div><h1>TROPA<br><span>COLLECTION</span></h1><p>BUILT BY FRIENDSHIP.<br>WALANG IWANAN.</p><a class="btn" href="#shop">SHOP NOW&nbsp; →</a></div>
+  <div><div class="eyebrow">NEW SEASON</div><h1>TROPA<br><span>COLLECTION</span></h1><p>BUILT BY FRIENDSHIP.<br>WALANG IWANAN.</p><a class="btn" href="#new-collection">SHOP NOW&nbsp; →</a></div>
   </section>
-<section class="section" id="shop">
-  <div class="section-head"><div><div class="eyebrow">Original drop</div><h2>SHOP THE COLLECTION</h2></div><p>The original TROPA black and white tees. Choose your fit and send your order directly to LMR Clothing.</p></div>
-  <div class="products" id="products"></div>
-</section>
 <section class="section" id="new-collection">
   <div class="section-head"><div><div class="eyebrow">New arrivals · V1 / V2 / V3</div><h2>TROPA NEW COLLECTION</h2></div><p>Six new designs in black and white. Choose your version, select your size, and order your TROPA tee.</p></div>
   <div class="products" id="newProducts"></div>
@@ -206,5 +212,54 @@ $("importBtn").onclick=()=>$("importFile").click();
 $("importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!Array.isArray(d.products))throw new Error();if(confirm("Replace this browser's products and settings with the backup?")){products=d.products;settings=d.settings||settings;save();renderProducts();renderAdminList();toast("Backup imported.")}}catch{toast("Invalid backup file.")}e.target.value=""};
 function openPhoto(id){const p=products.find(x=>x.id===id);if(!p)return;$("lightboxImage").src=p.image;$("lightboxImage").alt=p.name+" full-size photo";$("lightboxCaption").textContent=p.name+" — tap outside or press Escape to close";show("photoLightbox")}function closePhoto(){hide("photoLightbox");$("lightboxImage").src=""}$("closeLightbox").addEventListener("click",closePhoto);$("photoLightbox").addEventListener("click",e=>{if(e.target===$("photoLightbox"))closePhoto()});document.addEventListener("keydown",e=>{if(e.key==="Escape"){closePhoto();hide("productModal");hide("cartModal");hide("adminModal")}});$("year").textContent=new Date().getFullYear();if(settings.phone)$("footerContact").textContent="WhatsApp ordering available.";renderProducts();renderCartCount();
 </script>
+
+<audio id="lmrBrandSong" preload="none" loop playsinline>
+  <source src="assets/lmr-brand-song.mp3" type="audio/mpeg">
+</audio>
+<div class="lmr-music-player" id="lmrMusicPlayer" role="region" aria-label="LMR Clothing brand song player">
+  <button type="button" id="lmrMusicToggle" aria-label="Play LMR brand song" title="Play/Pause brand song">▶</button>
+  <div class="lmr-music-copy">
+    <div class="lmr-music-title">LMR Brand Song</div>
+    <div class="lmr-music-status" id="lmrMusicStatus">Tap to play · Astig ang Pormang LMR</div>
+  </div>
+  <input class="lmr-music-volume" id="lmrMusicVolume" type="range" min="0" max="1" step="0.05" value="0.55" aria-label="Music volume">
+</div>
+<script>
+(function(){
+  const audio = document.getElementById('lmrBrandSong');
+  const toggle = document.getElementById('lmrMusicToggle');
+  const status = document.getElementById('lmrMusicStatus');
+  const volume = document.getElementById('lmrMusicVolume');
+  if (!audio || !toggle) return;
+  audio.volume = Number(volume.value || 0.55);
+  function updateUI(){
+    const playing = !audio.paused && !audio.ended;
+    toggle.textContent = playing ? 'Ⅱ' : '▶';
+    toggle.setAttribute('aria-label', playing ? 'Pause LMR brand song' : 'Play LMR brand song');
+    status.textContent = playing ? 'Now playing · Astig ang Pormang LMR' : 'Tap to play · Astig ang Pormang LMR';
+  }
+  async function playSong(){
+    try { await audio.play(); updateUI(); }
+    catch (e) { status.textContent = 'Tap ▶ to start the brand song'; updateUI(); }
+  }
+  toggle.addEventListener('click', async function(){
+    if (audio.paused) await playSong();
+    else { audio.pause(); updateUI(); }
+  });
+  volume.addEventListener('input', function(){ audio.volume = Number(volume.value); });
+  audio.addEventListener('play', updateUI);
+  audio.addEventListener('pause', updateUI);
+  audio.addEventListener('ended', updateUI);
+  // Try autoplay. Browsers may block audible autoplay until the visitor interacts.
+  window.addEventListener('load', function(){ playSong(); }, {once:true});
+  // First user interaction can start playback if autoplay was blocked.
+  document.addEventListener('click', function firstInteraction(){
+    if (audio.paused) playSong();
+    document.removeEventListener('click', firstInteraction);
+  }, {once:true});
+  updateUI();
+})();
+</script>
+
 </body>
 </html>
