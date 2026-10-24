@@ -58,14 +58,14 @@
 .hero .btn:hover{background:#d8d000;border-color:#d8d000}
 .hero-visual{display:none}
 @media(max-width:800px){
- .hero{min-height:clamp(460px,72vw,540px);padding:38px 5%;background-position:center center;align-items:end}
+ .hero{min-height:clamp(440px,95vw,540px);padding:38px 5%;background-position:60% center;align-items:end}
  .hero:before{background:linear-gradient(0deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.78) 42%,rgba(0,0,0,.12) 100%)}
  .hero>div:first-child{max-width:100%;align-self:end;padding-bottom:12px;text-align:left}
  .hero h1{font-size:clamp(42px,10vw,66px)}
  .hero p{font-size:13px}
 }
 @media(max-width:480px){
- .hero{min-height:460px;padding:28px 5%;background-position:center center}
+ .hero{min-height:460px;padding:28px 5%;background-position:60% center}
  .hero h1{font-size:clamp(38px,11vw,52px)}
  .hero .btn{padding:13px 16px}
 }
@@ -155,7 +155,7 @@ function show(id){$(id).classList.add("show")}function hide(id){$(id).classList.
 function renderProducts(){
  const host=$("products");host.innerHTML="";
  products.forEach(p=>{const el=document.createElement("article");el.className="product";
- el.innerHTML=`<div class="product-image" role="button" tabindex="0" aria-label="View full photo of ${escapeHtml(p.name)}" data-photo="${escapeHtml(p.id)}"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy">${p.status==="soldout"?'<span class="badge">Sold out</span>':p.status==="new"?'<span class="badge">New drop</span>':''}</div><div class="product-info"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.description)}</p><div class="price-row"><span class="price">${money(p.price)}</span><button class="small-btn" data-detail="${escapeHtml(p.id)}" ${p.status==="soldout"?"disabled":""}>${p.status==="soldout"?"Sold out":"View / Order"}</button></div></div>`;
+ el.innerHTML=`<div class="product-image" role="button" tabindex="0" aria-label="View full photo of ${escapeHtml(p.name)}" data-photo="${escapeHtml(p.id)}"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy" decoding="async">${p.status==="soldout"?'<span class="badge">Sold out</span>':p.status==="new"?'<span class="badge">New drop</span>':''}</div><div class="product-info"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.description)}</p><div class="price-row"><span class="price">${money(p.price)}</span><button class="small-btn" data-detail="${escapeHtml(p.id)}" ${p.status==="soldout"?"disabled":""}>${p.status==="soldout"?"Sold out":"View / Order"}</button></div></div>`;
  host.appendChild(el)});
  host.querySelectorAll("[data-detail]").forEach(b=>b.addEventListener("click",()=>openDetail(b.dataset.detail)));host.querySelectorAll("[data-photo]").forEach(el=>{const open=()=>openPhoto(el.dataset.photo);el.addEventListener("click",open);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}})});
 }
