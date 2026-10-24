@@ -1,10 +1,10 @@
-LMR CLOTHING — OPTIMIZED WEBSITE FOR GITHUB PAGES
+LMR CLOTHING — TROPA NEW COLLECTION UPDATE
 
-1. Replace the repository's index.html with this version.
-2. Upload all files in assets/ into the repository's existing assets/ folder.
-3. Make sure index.html and assets/ are both at the repository root level.
-4. Commit changes and wait for GitHub Pages to redeploy.
+Includes original TROPA black/white tees plus six new products: V1, V2, V3 in black and white. All six new uploaded mockups are compressed to WebP. The responsive hero banner, shopping cart, full-size product photo popup, Messenger/WhatsApp ordering and GCash information section are retained.
 
-This version uses your latest cropped two-model banner, compressed to WebP. The product mockups and logo are compressed too, which greatly reduces download size. The Messenger + GCash starter features are retained.
+GitHub Pages update:
+1. Replace index.html in your repository.
+2. Upload all files from this package's assets/ folder into your repository's assets/ folder.
+3. Commit changes and wait for GitHub Pages to redeploy.
 
-Important: The current admin panel stores changes only in the current browser. It does not sync product changes to the live site or other devices.
+Default price is ₱699 per shirt as a placeholder. Update prices before accepting orders. This is a static website: local admin changes do not sync to all visitors. GCash payment is manually verified.

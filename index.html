@@ -76,15 +76,19 @@
 <div class="topbar">TROPA — FIRST DROP · BUILT BY FRIENDSHIP · WALANG IWANAN</div>
 <header class="nav">
   <a class="brand" href="#home"><img src="assets/lmr-logo.webp" alt="LMR logo"><span>LMR CLOTHING</span></a>
-  <nav class="navlinks"><a href="#shop">Shop</a><a href="#story">Our Story</a><button id="cartOpen">Bag (<span id="cartCount">0</span>)</button><button id="adminOpen">Admin</button></nav>
+  <nav class="navlinks"><a href="#shop">Shop</a><a href="#new-collection">New Collection</a><a href="#story">Our Story</a><button id="cartOpen">Bag (<span id="cartCount">0</span>)</button><button id="adminOpen">Admin</button></nav>
 </header>
 <main>
 <section class="hero" id="home">
   <div><div class="eyebrow">NEW SEASON</div><h1>TROPA<br><span>COLLECTION</span></h1><p>BUILT BY FRIENDSHIP.<br>WALANG IWANAN.</p><a class="btn" href="#shop">SHOP NOW&nbsp; →</a></div>
   </section>
 <section class="section" id="shop">
-  <div class="section-head"><div><div class="eyebrow">The first drop</div><h2>SHOP THE COLLECTION</h2></div><p>Two colorways. One message. Choose your fit and send your order directly to LMR Clothing.</p></div>
+  <div class="section-head"><div><div class="eyebrow">Original drop</div><h2>SHOP THE COLLECTION</h2></div><p>The original TROPA black and white tees. Choose your fit and send your order directly to LMR Clothing.</p></div>
   <div class="products" id="products"></div>
+</section>
+<section class="section" id="new-collection">
+  <div class="section-head"><div><div class="eyebrow">New arrivals · V1 / V2 / V3</div><h2>TROPA NEW COLLECTION</h2></div><p>Six new designs in black and white. Choose your version, select your size, and order your TROPA tee.</p></div>
+  <div class="products" id="newProducts"></div>
 </section>
 <section class="section story" id="story">
   <div class="story-logo"><img src="assets/lmr-logo.webp" alt="LMR Clothing logo"></div>
@@ -141,12 +145,19 @@
 <div id="toast" class="toast hidden"></div>
 <script>
 const defaultProducts=[
- {id:"tropa-black",name:"TROPA Black Tee",price:699,category:"T-Shirts",sizes:["S","M","L","XL","XXL"],colors:["Black"],status:"new",description:"Black streetwear tee featuring the TROPA front mark and illustrated friendship graphic on the back.",image:"assets/tropa-black-mockup.webp"},
- {id:"tropa-white",name:"TROPA White Tee",price:699,category:"T-Shirts",sizes:["S","M","L","XL","XXL"],colors:["White"],status:"new",description:"White streetwear tee featuring the TROPA front mark and illustrated friendship graphic on the back.",image:"assets/tropa-white-mockup.webp"}
+ {id:"tropa-black",name:"TROPA Black Tee — Original",price:699,category:"Original Collection",sizes:["S","M","L","XL","XXL"],colors:["Black"],status:"new",description:"Original black TROPA tee with the friendship graphic on the back.",image:"assets/tropa-black-mockup.webp"},
+ {id:"tropa-white",name:"TROPA White Tee — Original",price:699,category:"Original Collection",sizes:["S","M","L","XL","XXL"],colors:["White"],status:"new",description:"Original white TROPA tee with the friendship graphic on the back.",image:"assets/tropa-white-mockup.webp"},
+ {id:"tropa-black-v1",name:"TROPA V1 — Black Tee",price:699,category:"TROPA New Collection",sizes:["S","M","L","XL","XXL"],colors:["Black"],status:"new",description:"TROPA Collection V1 black oversized tee. Built by friendship. Walang iwanan.",image:"assets/tropa-black-v1.webp"},
+ {id:"tropa-white-v1",name:"TROPA V1 — White Tee",price:699,category:"TROPA New Collection",sizes:["S","M","L","XL","XXL"],colors:["White"],status:"new",description:"TROPA Collection V1 white oversized tee. Built by friendship. Walang iwanan.",image:"assets/tropa-white-v1.webp"},
+ {id:"tropa-black-v2",name:"TROPA V2 — Black Tee",price:699,category:"TROPA New Collection",sizes:["S","M","L","XL","XXL"],colors:["Black"],status:"new",description:"TROPA Collection V2 black oversized tee. Built by friendship. Walang iwanan.",image:"assets/tropa-black-v2.webp"},
+ {id:"tropa-white-v2",name:"TROPA V2 — White Tee",price:699,category:"TROPA New Collection",sizes:["S","M","L","XL","XXL"],colors:["White"],status:"new",description:"TROPA Collection V2 white oversized tee. Built by friendship. Walang iwanan.",image:"assets/tropa-white-v2.webp"},
+ {id:"tropa-black-v3",name:"TROPA V3 — Black Tee",price:699,category:"TROPA New Collection",sizes:["S","M","L","XL","XXL"],colors:["Black"],status:"new",description:"TROPA Collection V3 black oversized tee. Built by friendship. Walang iwanan.",image:"assets/tropa-black-v3.webp"},
+ {id:"tropa-white-v3",name:"TROPA V3 — White Tee",price:699,category:"TROPA New Collection",sizes:["S","M","L","XL","XXL"],colors:["White"],status:"new",description:"TROPA Collection V3 white oversized tee. Built by friendship. Walang iwanan.",image:"assets/tropa-white-v3.webp"}
 ];
 const $=id=>document.getElementById(id);
 const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
-let products=load("lmr_products",defaultProducts), cart=load("lmr_cart",[]), settings=load("lmr_settings",{phone:"",note:"Delivery fee confirmed after address",messengerPage:"",gcashNumber:"",gcashName:"",gcashQr:""}), editId=null, adminUnlocked=false;
+const savedProducts=load("lmr_products",[]);
+let products=defaultProducts.map(p=>({...p,...(savedProducts.find(x=>x.id===p.id)||{})})).concat(savedProducts.filter(x=>!defaultProducts.some(p=>p.id===x.id))), cart=load("lmr_cart",[]), settings=load("lmr_settings",{phone:"",note:"Delivery fee confirmed after address",messengerPage:"",gcashNumber:"",gcashName:"",gcashQr:""}), editId=null, adminUnlocked=false;
 function save(){localStorage.setItem("lmr_products",JSON.stringify(products));localStorage.setItem("lmr_cart",JSON.stringify(cart));localStorage.setItem("lmr_settings",JSON.stringify(settings))}
 function money(n){return "₱"+Number(n||0).toLocaleString("en-PH",{maximumFractionDigits:2})}
 function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
@@ -158,6 +169,7 @@ function renderProducts(){
  el.innerHTML=`<div class="product-image" role="button" tabindex="0" aria-label="View full photo of ${escapeHtml(p.name)}" data-photo="${escapeHtml(p.id)}"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy" decoding="async">${p.status==="soldout"?'<span class="badge">Sold out</span>':p.status==="new"?'<span class="badge">New drop</span>':''}</div><div class="product-info"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.description)}</p><div class="price-row"><span class="price">${money(p.price)}</span><button class="small-btn" data-detail="${escapeHtml(p.id)}" ${p.status==="soldout"?"disabled":""}>${p.status==="soldout"?"Sold out":"View / Order"}</button></div></div>`;
  host.appendChild(el)});
  host.querySelectorAll("[data-detail]").forEach(b=>b.addEventListener("click",()=>openDetail(b.dataset.detail)));host.querySelectorAll("[data-photo]").forEach(el=>{const open=()=>openPhoto(el.dataset.photo);el.addEventListener("click",open);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}})});
+ if(hostId==="products" && $("newProducts"))renderProducts("newProducts",products.filter(p=>/-v[123]$/.test(p.id)));
 }
 function openDetail(id){const p=products.find(x=>x.id===id);if(!p)return;$("detailTitle").textContent=p.name;
  $("productDetail").innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start"><img src="${escapeHtml(p.image)}" style="width:100%;background:#0b0b0c" alt="${escapeHtml(p.name)}"><div><div class="eyebrow">${escapeHtml(p.category)}</div><h2>${escapeHtml(p.name)}</h2><p style="color:var(--gold);font-size:22px;font-weight:800">${money(p.price)}</p><p class="notice">${escapeHtml(p.description)}</p><div class="field" style="margin:15px 0"><label>Size</label><select id="detailSize">${(p.sizes||["One size"]).map(s=>`<option>${escapeHtml(s)}</option>`).join("")}</select></div><div class="field" style="margin:15px 0"><label>Color</label><select id="detailColor">${(p.colors||["Default"]).map(s=>`<option>${escapeHtml(s)}</option>`).join("")}</select></div><div class="field"><label>Quantity</label><input id="detailQty" type="number" min="1" max="20" value="1"></div><button class="btn" style="width:100%;margin-top:16px" id="addCartBtn">Add to bag</button></div></div>`;
