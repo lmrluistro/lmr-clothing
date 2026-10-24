@@ -1,10 +1,11 @@
-LMR CLOTHING — TROPA NEW COLLECTION UPDATE
+LMR CLOTHING — TROPA COLLECTION + BRAND SONG
 
-Includes original TROPA black/white tees plus six new products: V1, V2, V3 in black and white. All six new uploaded mockups are compressed to WebP. The responsive hero banner, shopping cart, full-size product photo popup, Messenger/WhatsApp ordering and GCash information section are retained.
+This package includes your existing website, TROPA collections, optimized images, and the brand song “ASTIG ANG PORMANG LMR”.
 
-GitHub Pages update:
-1. Replace index.html in your repository.
-2. Upload all files from this package's assets/ folder into your repository's assets/ folder.
-3. Commit changes and wait for GitHub Pages to redeploy.
+To publish:
+1. Extract this ZIP.
+2. Replace index.html in your GitHub repository.
+3. Upload/replace all files inside assets/ in your repository's assets folder.
+4. Commit changes and wait for GitHub Pages to redeploy.
 
-Default price is ₱699 per shirt as a placeholder. Update prices before accepting orders. This is a static website: local admin changes do not sync to all visitors. GCash payment is manually verified.
+The song player attempts autoplay on page load, but browsers may block sound until a visitor taps/clicks. The floating player lets visitors play/pause the song and adjust volume. The MP3 is stored in assets/lmr-brand-song.mp3.
