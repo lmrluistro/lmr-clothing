@@ -86,16 +86,12 @@
 <div class="topbar">TROPA — FIRST DROP · BUILT BY FRIENDSHIP · WALANG IWANAN</div>
 <header class="nav">
   <a class="brand" href="#home"><img src="assets/lmr-logo.webp" alt="LMR logo"><span>LMR CLOTHING</span></a>
-  <nav class="navlinks"><a href="#shop">Shop</a><a href="#new-collection">New Collection</a><a href="#story">Our Story</a><button id="cartOpen">Bag (<span id="cartCount">0</span>)</button><button id="adminOpen">Admin</button></nav>
+  <nav class="navlinks"><a href="#new-collection">Shop</a><a href="#new-collection">New Collection</a><a href="#story">Our Story</a><button id="cartOpen">Bag (<span id="cartCount">0</span>)</button><button id="adminOpen">Admin</button></nav>
 </header>
 <main>
 <section class="hero" id="home">
-  <div><div class="eyebrow">NEW SEASON</div><h1>TROPA<br><span>COLLECTION</span></h1><p>BUILT BY FRIENDSHIP.<br>WALANG IWANAN.</p><a class="btn" href="#shop">SHOP NOW&nbsp; →</a></div>
+  <div><div class="eyebrow">NEW SEASON</div><h1>TROPA<br><span>COLLECTION</span></h1><p>BUILT BY FRIENDSHIP.<br>WALANG IWANAN.</p><a class="btn" href="#new-collection">SHOP NOW&nbsp; →</a></div>
   </section>
-<section class="section" id="shop">
-  <div class="section-head"><div><div class="eyebrow">Original drop</div><h2>SHOP THE COLLECTION</h2></div><p>The original TROPA black and white tees. Choose your fit and send your order directly to LMR Clothing.</p></div>
-  <div class="products" id="products"></div>
-</section>
 <section class="section" id="new-collection">
   <div class="section-head"><div><div class="eyebrow">New arrivals · V1 / V2 / V3</div><h2>TROPA NEW COLLECTION</h2></div><p>Six new designs in black and white. Choose your version, select your size, and order your TROPA tee.</p></div>
   <div class="products" id="newProducts"></div>
@@ -174,12 +170,21 @@ function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;",
 function toast(msg){$("toast").textContent=msg;$("toast").classList.remove("hidden");setTimeout(()=>$("toast").classList.add("hidden"),2600)}
 function show(id){$(id).classList.add("show")}function hide(id){$(id).classList.remove("show")}
 function renderProducts(){
- const host=$("products");host.innerHTML="";
- products.forEach(p=>{const el=document.createElement("article");el.className="product";
- el.innerHTML=`<div class="product-image" role="button" tabindex="0" aria-label="View full photo of ${escapeHtml(p.name)}" data-photo="${escapeHtml(p.id)}"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy" decoding="async">${p.status==="soldout"?'<span class="badge">Sold out</span>':p.status==="new"?'<span class="badge">New drop</span>':''}</div><div class="product-info"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.description)}</p><div class="price-row"><span class="price">${money(p.price)}</span><button class="small-btn" data-detail="${escapeHtml(p.id)}" ${p.status==="soldout"?"disabled":""}>${p.status==="soldout"?"Sold out":"View / Order"}</button></div></div>`;
- host.appendChild(el)});
- host.querySelectorAll("[data-detail]").forEach(b=>b.addEventListener("click",()=>openDetail(b.dataset.detail)));host.querySelectorAll("[data-photo]").forEach(el=>{const open=()=>openPhoto(el.dataset.photo);el.addEventListener("click",open);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}})});
- if(hostId==="products" && $("newProducts"))renderProducts("newProducts",products.filter(p=>/-v[123]$/.test(p.id)));
+ const host=$("newProducts");
+ if(!host)return;
+ host.innerHTML="";
+ const collectionProducts=products.filter(p=>/-v[123]$/.test(p.id));
+ collectionProducts.forEach(p=>{
+  const el=document.createElement("article");el.className="product";
+  el.innerHTML=`<div class="product-image" role="button" tabindex="0" aria-label="View full photo of ${escapeHtml(p.name)}" data-photo="${escapeHtml(p.id)}"><img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)}" loading="lazy" decoding="async">${p.status==="soldout"?'<span class="badge">Sold out</span>':p.status==="new"?'<span class="badge">New drop</span>':''}</div><div class="product-info"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.description)}</p><div class="price-row"><span class="price">${money(p.price)}</span><button class="small-btn" data-detail="${escapeHtml(p.id)}" ${p.status==="soldout"?"disabled":""}>${p.status==="soldout"?"Sold out":"View / Order"}</button></div></div>`;
+  host.appendChild(el);
+ });
+ host.querySelectorAll("[data-detail]").forEach(b=>b.addEventListener("click",()=>openDetail(b.dataset.detail)));
+ host.querySelectorAll("[data-photo]").forEach(el=>{
+  const open=()=>openPhoto(el.dataset.photo);
+  el.addEventListener("click",open);
+  el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();open()}});
+ });
 }
 function openDetail(id){const p=products.find(x=>x.id===id);if(!p)return;$("detailTitle").textContent=p.name;
  $("productDetail").innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start"><img src="${escapeHtml(p.image)}" style="width:100%;background:#0b0b0c" alt="${escapeHtml(p.name)}"><div><div class="eyebrow">${escapeHtml(p.category)}</div><h2>${escapeHtml(p.name)}</h2><p style="color:var(--gold);font-size:22px;font-weight:800">${money(p.price)}</p><p class="notice">${escapeHtml(p.description)}</p><div class="field" style="margin:15px 0"><label>Size</label><select id="detailSize">${(p.sizes||["One size"]).map(s=>`<option>${escapeHtml(s)}</option>`).join("")}</select></div><div class="field" style="margin:15px 0"><label>Color</label><select id="detailColor">${(p.colors||["Default"]).map(s=>`<option>${escapeHtml(s)}</option>`).join("")}</select></div><div class="field"><label>Quantity</label><input id="detailQty" type="number" min="1" max="20" value="1"></div><button class="btn" style="width:100%;margin-top:16px" id="addCartBtn">Add to bag</button></div></div>`;
