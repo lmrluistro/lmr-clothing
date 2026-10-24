@@ -222,7 +222,7 @@ $("importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{co
 function openPhoto(id){const p=products.find(x=>x.id===id);if(!p)return;$("lightboxImage").src=p.image;$("lightboxImage").alt=p.name+" full-size photo";$("lightboxCaption").textContent=p.name+" — tap outside or press Escape to close";show("photoLightbox")}function closePhoto(){hide("photoLightbox");$("lightboxImage").src=""}$("closeLightbox").addEventListener("click",closePhoto);$("photoLightbox").addEventListener("click",e=>{if(e.target===$("photoLightbox"))closePhoto()});document.addEventListener("keydown",e=>{if(e.key==="Escape"){closePhoto();hide("productModal");hide("cartModal");hide("adminModal")}});$("year").textContent=new Date().getFullYear();if(settings.phone)$("footerContact").textContent="WhatsApp ordering available.";renderProducts();renderCartCount();
 </script>
 
-<audio id="lmrBrandSong" preload="auto" autoplay playsinline>
+<audio id="lmrBrandSong" preload="auto" autoplay loop playsinline>
   <source src="assets/lmr-brand-song.mp3" type="audio/mpeg">
 </audio>
 <div class="lmr-music-player" id="lmrMusicPlayer" role="region" aria-label="LMR Clothing brand song player">
@@ -242,43 +242,81 @@ function openPhoto(id){const p=products.find(x=>x.id===id);if(!p)return;$("light
   const status = document.getElementById('lmrMusicStatus');
   const volume = document.getElementById('lmrMusicVolume');
   if (!audio || !toggle) return;
-  audio.volume = Number(volume?.value || 0.55);
-  function updateUI(){
+
+  audio.loop = true;
+  audio.autoplay = true;
+  audio.volume = Number(volume ? volume.value : 0.55);
+
+  function updateUI(message){
     const playing = !audio.paused && !audio.ended;
     toggle.textContent = playing ? 'Ⅱ' : '▶';
     toggle.setAttribute('aria-label', playing ? 'Pause LMR brand song' : 'Play LMR brand song');
-    if (status) status.textContent = playing ? 'Now playing · Astig ang Pormang LMR' : 'Paused · Astig ang Pormang LMR';
-  }
-  async function playSong(){
-    try {
-      await audio.play();
-      updateUI();
-    } catch (e) {
-      if (status) status.textContent = 'Autoplay blocked — tap ▶ to play';
-      updateUI();
+    if (status) {
+      status.textContent = message || (playing
+        ? 'Now playing · Astig ang Pormang LMR'
+        : 'Tap ▶ to play · Astig ang Pormang LMR');
     }
   }
+
+  async function attemptAutoplay(){
+    try {
+      await audio.play();
+      updateUI('Now playing · Astig ang Pormang LMR');
+      return true;
+    } catch (error) {
+      updateUI('Browser blocked autoplay · Tap ▶ to start');
+      return false;
+    }
+  }
+
   toggle.addEventListener('click', async function(){
-    if (audio.paused) await playSong();
-    else { audio.pause(); updateUI(); }
+    if (audio.paused) {
+      try {
+        await audio.play();
+        updateUI('Now playing · Astig ang Pormang LMR');
+      } catch (error) {
+        updateUI('Tap again to allow music playback');
+      }
+    } else {
+      audio.pause();
+      updateUI('Paused · Astig ang Pormang LMR');
+    }
   });
+
   if (replay) replay.addEventListener('click', async function(){
-    audio.currentTime = 0;
-    await playSong();
+    try {
+      audio.currentTime = 0;
+      await audio.play();
+      updateUI('Replaying · Astig ang Pormang LMR');
+    } catch (error) {
+      updateUI('Tap ▶ to start the song');
+    }
   });
-  if (volume) volume.addEventListener('input', function(){ audio.volume = Number(volume.value); });
-  audio.addEventListener('play', updateUI);
-  audio.addEventListener('pause', updateUI);
-  audio.addEventListener('ended', updateUI);
-  // Try audible autoplay on load. Browsers may require user interaction.
-  document.addEventListener('DOMContentLoaded', playSong, {once:true});
-  window.addEventListener('load', playSong, {once:true});
-  // Retry on first user interaction if the browser blocked autoplay.
-  document.addEventListener('pointerdown', function firstInteraction(){
-    if (audio.paused) playSong();
-    document.removeEventListener('pointerdown', firstInteraction);
-  }, {once:true, passive:true});
-  updateUI();
+
+  if (volume) volume.addEventListener('input', function(){
+    audio.volume = Number(volume.value);
+  });
+
+  audio.addEventListener('playing', function(){ updateUI('Now playing · Astig ang Pormang LMR'); });
+  audio.addEventListener('pause', function(){ updateUI('Paused · Astig ang Pormang LMR'); });
+  audio.addEventListener('ended', function(){ updateUI('Song ended · Tap ↻ to replay'); });
+  audio.addEventListener('error', function(){ updateUI('Song file could not load · Check assets/lmr-brand-song.mp3'); });
+
+  // Start immediately, then retry after the page finishes loading.
+  attemptAutoplay();
+  window.addEventListener('load', attemptAutoplay, {once:true});
+
+  // Browsers require a real visitor gesture to start audible media when autoplay is blocked.
+  // Retry on the first touch/click/key interaction anywhere on the page.
+  const resumeOnInteraction = function(){
+    if (audio.paused) attemptAutoplay();
+    document.removeEventListener('pointerdown', resumeOnInteraction);
+    document.removeEventListener('keydown', resumeOnInteraction);
+  };
+  document.addEventListener('pointerdown', resumeOnInteraction, {once:true, passive:true});
+  document.addEventListener('keydown', resumeOnInteraction, {once:true});
+
+  updateUI('Starting song…');
 })();
 </script>
 
