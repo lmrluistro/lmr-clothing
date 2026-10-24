@@ -222,14 +222,15 @@ $("importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{co
 function openPhoto(id){const p=products.find(x=>x.id===id);if(!p)return;$("lightboxImage").src=p.image;$("lightboxImage").alt=p.name+" full-size photo";$("lightboxCaption").textContent=p.name+" — tap outside or press Escape to close";show("photoLightbox")}function closePhoto(){hide("photoLightbox");$("lightboxImage").src=""}$("closeLightbox").addEventListener("click",closePhoto);$("photoLightbox").addEventListener("click",e=>{if(e.target===$("photoLightbox"))closePhoto()});document.addEventListener("keydown",e=>{if(e.key==="Escape"){closePhoto();hide("productModal");hide("cartModal");hide("adminModal")}});$("year").textContent=new Date().getFullYear();if(settings.phone)$("footerContact").textContent="WhatsApp ordering available.";renderProducts();renderCartCount();
 </script>
 
-<audio id="lmrBrandSong" preload="none" loop playsinline>
+<audio id="lmrBrandSong" preload="auto" autoplay playsinline>
   <source src="assets/lmr-brand-song.mp3" type="audio/mpeg">
 </audio>
 <div class="lmr-music-player" id="lmrMusicPlayer" role="region" aria-label="LMR Clothing brand song player">
   <button type="button" id="lmrMusicToggle" aria-label="Play LMR brand song" title="Play/Pause brand song">▶</button>
+  <button type="button" id="lmrMusicReplay" aria-label="Replay LMR brand song" title="Replay song" style="width:30px;height:30px;background:#292929;border:1px solid #555;font-size:13px">↻</button>
   <div class="lmr-music-copy">
     <div class="lmr-music-title">LMR Brand Song</div>
-    <div class="lmr-music-status" id="lmrMusicStatus">Tap to play · Astig ang Pormang LMR</div>
+    <div class="lmr-music-status" id="lmrMusicStatus">Starting song…</div>
   </div>
   <input class="lmr-music-volume" id="lmrMusicVolume" type="range" min="0" max="1" step="0.05" value="0.55" aria-label="Music volume">
 </div>
@@ -237,35 +238,46 @@ function openPhoto(id){const p=products.find(x=>x.id===id);if(!p)return;$("light
 (function(){
   const audio = document.getElementById('lmrBrandSong');
   const toggle = document.getElementById('lmrMusicToggle');
+  const replay = document.getElementById('lmrMusicReplay');
   const status = document.getElementById('lmrMusicStatus');
   const volume = document.getElementById('lmrMusicVolume');
   if (!audio || !toggle) return;
-  audio.volume = Number(volume.value || 0.55);
+  audio.volume = Number(volume?.value || 0.55);
   function updateUI(){
     const playing = !audio.paused && !audio.ended;
     toggle.textContent = playing ? 'Ⅱ' : '▶';
     toggle.setAttribute('aria-label', playing ? 'Pause LMR brand song' : 'Play LMR brand song');
-    status.textContent = playing ? 'Now playing · Astig ang Pormang LMR' : 'Tap to play · Astig ang Pormang LMR';
+    if (status) status.textContent = playing ? 'Now playing · Astig ang Pormang LMR' : 'Paused · Astig ang Pormang LMR';
   }
   async function playSong(){
-    try { await audio.play(); updateUI(); }
-    catch (e) { status.textContent = 'Tap ▶ to start the brand song'; updateUI(); }
+    try {
+      await audio.play();
+      updateUI();
+    } catch (e) {
+      if (status) status.textContent = 'Autoplay blocked — tap ▶ to play';
+      updateUI();
+    }
   }
   toggle.addEventListener('click', async function(){
     if (audio.paused) await playSong();
     else { audio.pause(); updateUI(); }
   });
-  volume.addEventListener('input', function(){ audio.volume = Number(volume.value); });
+  if (replay) replay.addEventListener('click', async function(){
+    audio.currentTime = 0;
+    await playSong();
+  });
+  if (volume) volume.addEventListener('input', function(){ audio.volume = Number(volume.value); });
   audio.addEventListener('play', updateUI);
   audio.addEventListener('pause', updateUI);
   audio.addEventListener('ended', updateUI);
-  // Try autoplay. Browsers may block audible autoplay until the visitor interacts.
-  window.addEventListener('load', function(){ playSong(); }, {once:true});
-  // First user interaction can start playback if autoplay was blocked.
-  document.addEventListener('click', function firstInteraction(){
+  // Try audible autoplay on load. Browsers may require user interaction.
+  document.addEventListener('DOMContentLoaded', playSong, {once:true});
+  window.addEventListener('load', playSong, {once:true});
+  // Retry on first user interaction if the browser blocked autoplay.
+  document.addEventListener('pointerdown', function firstInteraction(){
     if (audio.paused) playSong();
-    document.removeEventListener('click', firstInteraction);
-  }, {once:true});
+    document.removeEventListener('pointerdown', firstInteraction);
+  }, {once:true, passive:true});
   updateUI();
 })();
 </script>
