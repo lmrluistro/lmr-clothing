@@ -1,19 +1,10 @@
-LMR CLOTHING — FREE STARTER STORE
+LMR CLOTHING — OPTIMIZED WEBSITE FOR GITHUB PAGES
 
-FILES
-- index.html: storefront, product detail, cart, WhatsApp checkout, local admin panel
-- assets/: LMR logo and two TROPA mockups
+1. Replace the repository's index.html with this version.
+2. Upload all files in assets/ into the repository's existing assets/ folder.
+3. Make sure index.html and assets/ are both at the repository root level.
+4. Commit changes and wait for GitHub Pages to redeploy.
 
-HOW TO PREVIEW
-1. Extract the ZIP.
-2. Open index.html in Chrome or Edge.
-3. For best results, publish the whole folder to a static host such as Netlify (drag-and-drop deployment).
+This version uses your latest cropped two-model banner, compressed to WebP. The product mockups and logo are compressed too, which greatly reduces download size. The Messenger + GCash starter features are retained.
 
-IMPORTANT LIMITATIONS
-- This is a starter/prototype. Products, settings, cart and admin password are stored in the current browser's localStorage.
-- Changes made in one browser/device do NOT automatically sync to the public site or other devices.
-- The admin password is only a local browser gate, NOT secure server-side authentication.
-- WhatsApp order checkout needs the store's WhatsApp number set in Admin > Store settings. Use international digits only, e.g. Philippines 63 + mobile number without the leading 0.
-- No online payment processing, server-side order database, customer accounts, or stock synchronization is included yet.
-- Before accepting real customer information, connect a secure backend/database and server-side admin authentication.
-- Default product prices (₱699) are placeholders; change them to your actual prices.
+Important: The current admin panel stores changes only in the current browser. It does not sync product changes to the live site or other devices.
